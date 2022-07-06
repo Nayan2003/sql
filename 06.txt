@@ -1,0 +1,238 @@
+SQL*Plus: Release 21.0.0.0.0 - Production on Wed Jul 6 07:24:28 2022
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Tue Jul 05 2022 08:08:15 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> creat table maths_dep(t_name char (15),t_qual char(15),t_desig char(15), mob_no char(10),t_dob date);
+SP2-0734: unknown command beginning "creat tabl..." - rest of line ignored.
+SQL> create table maths_dep(t_name char (15),t_qual char(15),t_desig char(15), mob_no char(10),t_dob date);
+
+Table created.
+
+SQL> desc maths_dep
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ T_NAME                                             CHAR(15)
+ T_QUAL                                             CHAR(15)
+ T_DESIG                                            CHAR(15)
+ MOB_NO                                             CHAR(10)
+ T_DOB                                              DATE
+
+SQL> insert into maths_dep(t_name,t_qual,t_desig,mob_no,t_dob) values('rakesh sir','phd in mathematics','gn khalsa','456465464','24-jan-1997');
+insert into maths_dep(t_name,t_qual,t_desig,mob_no,t_dob) values('rakesh sir','phd in mathematics','gn khalsa','456465464','24-jan-1997')
+                                                                              *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."MATHS_DEP"."T_QUAL" (actual:
+18, maximum: 15)
+
+
+SQL> insert into maths_dep(t_name,t_qual,t_desig,mob_no,t_dob) values('rakesh sir','phd','gn khalsa','456465464','24-jan-1997');
+
+1 row created.
+
+SQL> select from maths_dep
+  2
+SQL> select from maths_dep;
+select from maths_dep
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from maths_dep
+  2
+SQL> select * from maths_dep;
+
+T_NAME          T_QUAL          T_DESIG         MOB_NO     T_DOB
+--------------- --------------- --------------- ---------- ---------
+rakesh sir      phd             gn khalsa       456465464  24-JAN-97
+
+SQL>  insert into maths_dep(t_name,t_qual,t_desig,mob_no,t_dob) values('sagar sir','msc','prof','546546566','25-jan-1999');
+
+1 row created.
+
+SQL> select * from maths_dep
+  2
+SQL> select * from maths_dep;
+
+T_NAME          T_QUAL          T_DESIG         MOB_NO     T_DOB
+--------------- --------------- --------------- ---------- ---------
+rakesh sir      phd             gn khalsa       456465464  24-JAN-97
+sagar sir       msc             prof            546546566  25-JAN-99
+
+SQL>  insert into maths_dep values('sagar sir','msc','prof','546546566','25-jan-1999');
+
+1 row created.
+
+SQL>  insert into maths_dep values('sagar sir','msc','prof','546546566');
+ insert into maths_dep values('sagar sir','msc','prof','546546566')
+             *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL>  insert into maths_dep values('sagar sir','msc','prof','546546566','25-jan-1999');
+
+1 row created.
+
+SQL> select * form maths_dep;
+select * form maths_dep
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select * from maths_dep;
+
+T_NAME          T_QUAL          T_DESIG         MOB_NO     T_DOB
+--------------- --------------- --------------- ---------- ---------
+rakesh sir      phd             gn khalsa       456465464  24-JAN-97
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+
+SQL>  insert into maths_dep(t_name,t_qual,t_desig,t_dob) values('sagar sir','msc','prof','25-jan-1999');
+
+1 row created.
+
+SQL> select * from maths_dep;
+
+T_NAME          T_QUAL          T_DESIG         MOB_NO     T_DOB
+--------------- --------------- --------------- ---------- ---------
+rakesh sir      phd             gn khalsa       456465464  24-JAN-97
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof                       25-JAN-99
+
+SQL>  insert into maths_dep values('sagar sir','msc','prof','546546566','');
+
+1 row created.
+
+SQL> select * from maths_dep;
+
+T_NAME          T_QUAL          T_DESIG         MOB_NO     T_DOB
+--------------- --------------- --------------- ---------- ---------
+rakesh sir      phd             gn khalsa       456465464  24-JAN-97
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof            546546566  25-JAN-99
+sagar sir       msc             prof                       25-JAN-99
+sagar sir       msc             prof            546546566
+
+6 rows selected.
+
+SQL> desc stud
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                             NUMBER(3)
+ NAME                                               CHAR(15)
+ DOB                                                DATE
+ CASS                                               CHAR(10)
+
+SQL> desc stu
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                               NUMBER(3)
+ NAME                                               CHAR(15)
+ MOB_NO                                             CHAR(10)
+ DOB                                                DATE
+ CITY                                               CHAR(10)
+
+SQL> drop table stud
+  2
+SQL> drop table stud;
+
+Table dropped.
+
+SQL> create mstud(Rollno number(3) unique, name varchar2(20) not null, mob_no number(10) unique);
+create mstud(Rollno number(3) unique, name varchar2(20) not null, mob_no number(10) unique)
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create table mstud(Rollno number(3) unique, name varchar2(20) not null, mob_no number(10) unique);
+
+Table created.
+
+SQL> insert into mstud values(407,'nayan',7045262273);
+
+1 row created.
+
+SQL> select * from mstud;
+
+    ROLLNO NAME                     MOB_NO
+---------- -------------------- ----------
+       407 nayan                7045262273
+
+SQL> insert into mstud values(413,'sahil',7045262273);
+insert into mstud values(413,'sahil',7045262273)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008316) violated
+
+
+SQL> insert into mstud values(413,'sahil',7045262274);
+
+1 row created.
+
+SQL> insert into mstud values(403,'shrutika',45646564);
+
+1 row created.
+
+SQL> insert into mstud values(406,'deepak',45221452);
+
+1 row created.
+
+SQL> select * from mstud;
+
+    ROLLNO NAME                     MOB_NO
+---------- -------------------- ----------
+       407 nayan                7045262273
+       413 sahil                7045262274
+       403 shrutika               45646564
+       406 deepak                 45221452
+
+SQL> insert into mstud (name, mob_no) values('non',75514555);
+
+1 row created.
+
+SQL> select * from mstud;
+
+    ROLLNO NAME                     MOB_NO
+---------- -------------------- ----------
+       407 nayan                7045262273
+       413 sahil                7045262274
+       403 shrutika               45646564
+       406 deepak                 45221452
+           non                    75514555
+
+SQL> insert into mstud values('','cde',123)
+  2
+SQL> insert into mstud values('','cde',123);
+
+1 row created.
+
+SQL> select * from mstud;
+
+    ROLLNO NAME                     MOB_NO
+---------- -------------------- ----------
+       407 nayan                7045262273
+       413 sahil                7045262274
+       403 shrutika               45646564
+       406 deepak                 45221452
+           non                    75514555
+           cde                         123
+
+6 rows selected.
+
+SQL>

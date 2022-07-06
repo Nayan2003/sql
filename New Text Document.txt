@@ -1,0 +1,23 @@
+06-07-22
+
+SQL> creat table maths_dep(t_name char (15),t_qual char(15),t_desig char(15), mob_no char(10),t_dob date);
+SP2-0734: unknown command beginning "creat tabl..." - rest of line ignored.
+SQL> create table maths_dep(t_name char (15),t_qual char(15),t_desig char(15), mob_no char(10),t_dob date);
+
+Table created.
+
+SQL> desc maths_dep
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ T_NAME                                             CHAR(15)
+ T_QUAL                                             CHAR(15)
+ T_DESIG                                            CHAR(15)
+ MOB_NO                                             CHAR(10)
+ T_DOB                                              DATE
+
+
+
+SQL> insert into maths_dep(t_name,t_qual,t_desig,mob_no,t_dob) values('rakesh sir','phd','gn khalsa','456465464','24-jan-1997');
+
+1 row created.
+
