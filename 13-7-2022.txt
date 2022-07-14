@@ -30,6 +30,7 @@ SQL> select * from  m_invent;
        100 nano              232       5000 25-SEP-02
        101 nano                0       5000 25-SEP-02
 
+Q2)
 SQL> create table m_donation(dno number(4) primary key,dname varchar2(20),damt number(20),dt date not null);
 
 Table created.
@@ -75,7 +76,7 @@ SQL> select * from m_hospital;
      PT_NO PNAME                 PAGE DOC_NAME        TYPE_OF_PATIENT    CHARGES
 ---------- --------------- ---------- --------------- --------------- ----------
         11 edison                 125 dr tesla        coma               15444.5
-Q3)SQL> create table m_course(CR_ID number(2) primary key,Cname varchar2(15),Sem number(2) not null);
+Q4)SQL> create table m_course(CR_ID number(2) primary key,Cname varchar2(15),Sem number(2) not null);
 
 Table created.
 SQL> desc m_course
@@ -92,7 +93,7 @@ SQL> select * from m_course;
      CR_ID CNAME                  SEM
 ---------- --------------- ----------
         10 nayan                    2
-Q4)SQL> create table m_Emp(EID varchar2(5),name varchar2(15),deptno number(3),salary number(8,2));
+Q5)SQL> create table m_Emp(EID varchar2(5),name varchar2(15),deptno number(3),salary number(8,2));
 
 Table created.
 SQL> desc m_emp;
