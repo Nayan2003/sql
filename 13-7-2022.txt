@@ -1,4 +1,5 @@
-Q1)SQL> create table m_invent(i_no number(4) unique,i_name varchar2(10) not null,o_stock number(3) default 0 ,m_price number(10,2),d_sale date);
+Q1)
+SQL> create table m_invent(i_no number(4) unique,i_name varchar2(10) not null,o_stock number(3) default 0 ,m_price number(10,2),d_sale date);
 Table created.
 
 SQL> desc m_invent;
@@ -19,7 +20,8 @@ SQL> select * from  m_invent;
 ---------- ---------- ---------- ---------- ---------
        100 nano              232       5000 25-SEP-02
 
-Q2)SQL> insert into m_invent (i_no,i_name,m_price,d_sale) values(101,'nano',5000,'25-sep-2002');
+Q2)
+SQL> insert into m_invent (i_no,i_name,m_price,d_sale) values(101,'nano',5000,'25-sep-2002');
 
 1 row created.
 
@@ -53,7 +55,8 @@ SQL> select * from m_donation;
       2564 nayan                  10000000 12-FEB-96
 
 
-Q3)SQL> create table m_hospital(pt_no number(2),pname varchar2(15),page number(3),doc_name varchar2(15),type_of_patient varchar2(15),charges number(11,5));
+Q3)
+SQL> create table m_hospital(pt_no number(2),pname varchar2(15),page number(3),doc_name varchar2(15),type_of_patient varchar2(15),charges number(11,5));
 
 Table created.
 
@@ -76,7 +79,8 @@ SQL> select * from m_hospital;
      PT_NO PNAME                 PAGE DOC_NAME        TYPE_OF_PATIENT    CHARGES
 ---------- --------------- ---------- --------------- --------------- ----------
         11 edison                 125 dr tesla        coma               15444.5
-Q4)SQL> create table m_course(CR_ID number(2) primary key,Cname varchar2(15),Sem number(2) not null);
+Q4)
+SQL> create table m_course(CR_ID number(2) primary key,Cname varchar2(15),Sem number(2) not null);
 
 Table created.
 SQL> desc m_course
@@ -93,7 +97,8 @@ SQL> select * from m_course;
      CR_ID CNAME                  SEM
 ---------- --------------- ----------
         10 nayan                    2
-Q5)SQL> create table m_Emp(EID varchar2(5),name varchar2(15),deptno number(3),salary number(8,2));
+Q5)
+SQL> create table m_Emp(EID varchar2(5),name varchar2(15),deptno number(3),salary number(8,2));
 
 Table created.
 SQL> desc m_emp;
