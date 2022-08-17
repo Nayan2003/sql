@@ -1,0 +1,241 @@
+
+SQL> create table book(b_id number(3), b_name varchar2(20));
+
+Table created.
+
+
+SQL> insert into book values(&b_id,'&bname');
+Enter value for b_id: 23
+Enter value for bname: physics
+old   1: insert into book values(&b_id,'&bname')
+new   1: insert into book values(23,'physics')
+
+1 row created.
+
+SQL> select*from book;
+
+      B_ID B_NAME
+---------- --------------------
+        23 physics
+
+SQL> alter table book modify (b_id primary key);
+
+Table altered.
+
+SQL> desc book;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ B_ID                                      NOT NULL NUMBER(3)
+ B_NAME                                             VARCHAR2(20)
+
+SQL> alter table book modify (b_name not null);
+
+Table altered.
+
+SQL> desc book;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ B_ID                                      NOT NULL NUMBER(3)
+ B_NAME                                    NOT NULL VARCHAR2(20)
+
+SQL> alter table book
+  2  add Bpub varchar2(20);
+
+Table altered.
+
+SQL> desc book;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ B_ID                                      NOT NULL NUMBER(3)
+ B_NAME                                    NOT NULL VARCHAR2(20)
+ BPUB                                               VARCHAR2(20)
+
+SQL> alter table book modify &b_name varchar2(10);
+Enter value for b_name:
+old   1: alter table book modify &b_name varchar2(10)
+new   1: alter table book modify  varchar2(10)
+alter table book modify  varchar2(10)
+                         *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> alter table book modify b_name  varchar2(30);
+
+Table altered.
+
+SQL> desc table
+ERROR:
+ORA-00931: missing identifier
+
+
+SQL> desk book;
+SP2-0042: unknown command "desk book" - rest of line ignored.
+SQL> desc book;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ B_ID                                      NOT NULL NUMBER(3)
+ B_NAME                                    NOT NULL VARCHAR2(30)
+ BPUB                                               VARCHAR2(20)
+
+SQL> alter table book add b_price number(20);
+
+Table altered.
+
+SQL> alter table book add issn number(20) not null;
+alter table book add issn number(20) not null
+            *
+ERROR at line 1:
+ORA-01758: table must be empty to add mandatory (NOT NULL) column
+
+
+SQL> alter table book add issn number(20) unique;
+
+Table altered.
+
+SQL> desc book;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ B_ID                                      NOT NULL NUMBER(3)
+ B_NAME                                    NOT NULL VARCHAR2(30)
+ BPUB                                               VARCHAR2(20)
+ B_PRICE                                            NUMBER(20)
+ ISSN                                               NUMBER(20)
+
+SQL> insert into book values (&_id,&b_name,&bpub,&b_price,&issn);
+Enter value for _id: 12
+Enter value for b_name: maths
+Enter value for bpub: manan
+Enter value for b_price: 500
+Enter value for issn: 5456
+old   1: insert into book values (&_id,&b_name,&bpub,&b_price,&issn)
+new   1: insert into book values (12,maths,manan,500,5456)
+insert into book values (12,maths,manan,500,5456)
+                                  *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into book values (&_id,'&b_name','&bpub',&b_price,&issn);
+Enter value for _id: 12
+Enter value for b_name: maths
+Enter value for bpub: manan
+Enter value for b_price: 500
+Enter value for issn: 54654
+old   1: insert into book values (&_id,'&b_name','&bpub',&b_price,&issn)
+new   1: insert into book values (12,'maths','manan',500,54654)
+
+1 row created.
+
+SQL> select * from book;
+
+      B_ID B_NAME                         BPUB                    B_PRICE
+---------- ------------------------------ -------------------- ----------
+      ISSN
+----------
+        23 physics
+
+
+        12 maths                          manan                       500
+     54654
+
+
+SQL> insert into book values (&_id,'&b_name','&bpub',&b_price,&issn);
+Enter value for _id: 65
+Enter value for b_name: chem
+Enter value for bpub: manan
+Enter value for b_price: 855
+Enter value for issn: 4566
+old   1: insert into book values (&_id,'&b_name','&bpub',&b_price,&issn)
+new   1: insert into book values (65,'chem','manan',855,4566)
+
+1 row created.
+
+SQL> insert into book values (&_id,'&b_name','&bpub',&b_price,&issn);
+Enter value for _id: 89
+Enter value for b_name: astronomy
+Enter value for bpub: iit
+Enter value for b_price: 5000
+Enter value for issn: 786
+old   1: insert into book values (&_id,'&b_name','&bpub',&b_price,&issn)
+new   1: insert into book values (89,'astronomy','iit',5000,786)
+
+1 row created.
+
+SQL> select * from book;
+
+      B_ID B_NAME                         BPUB                    B_PRICE
+---------- ------------------------------ -------------------- ----------
+      ISSN
+----------
+        23 physics
+
+
+        12 maths                          manan                       500
+     54654
+
+        65 chem                           manan                       855
+      4566
+
+
+      B_ID B_NAME                         BPUB                    B_PRICE
+---------- ------------------------------ -------------------- ----------
+      ISSN
+----------
+        89 astronomy                      iit                        5000
+       786
+
+
+SQL>
+
+
+
+
+
+Q2 
+
+SQL> create table job(c_id number(20),c_name varchar2(20),c_exp number(20));
+
+Table created.
+
+SQL> insert into job values(&c_id,'&c_name','&c_exp');
+Enter value for c_id: 12
+Enter value for c_name: sahil
+Enter value for c_exp: 60
+old   1: insert into job values(&c_id,'&c_name','&c_exp')
+new   1: insert into job values(12,'sahil','60')
+
+1 row created.
+
+SQL> insert into job values(&c_id,'&c_name','&c_exp');
+Enter value for c_id: 60
+Enter value for c_name: deepak
+Enter value for c_exp: 100
+old   1: insert into job values(&c_id,'&c_name','&c_exp')
+new   1: insert into job values(60,'deepak','100')
+
+1 row created.
+
+SQL> select *from job;
+
+      C_ID C_NAME                    C_EXP
+---------- -------------------- ----------
+        12 sahil                        60
+        60 deepak                      100
+
+SQL> alter table job modify (c_id primary key);
+
+Table altered.
+
+SQL> alter table job modify (c_name not null);
+
+Table altered.
+
+SQL> alter table job add c_date date;
+
+Table altered.
+
+SQL>
+
+
+
