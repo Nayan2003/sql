@@ -1,0 +1,514 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Wed Aug 17 07:22:25 2022
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Wed Aug 10 2022 07:55:39 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> create table emp (eno number(10),ename varchar2(20),edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager')) default 'soft eng',edept varchar2(20)check(edept in ('programming','hr','marketing','finance'))default 'programmer');
+create table emp (eno number(10),ename varchar2(20),edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager')) default 'soft eng',edept varchar2(20)check(edept in ('programming','hr','marketing','finance'))default 'programmer')
+                                                                                                                                                                                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table emp (eno number(10),ename varchar2(20),edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager') default 'soft eng'),edept varchar2(20)check(edept in ('programming','hr','marketing','finance')default 'programmer'));
+create table emp (eno number(10),ename varchar2(20),edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager') default 'soft eng'),edept varchar2(20)check(edept in ('programming','hr','marketing','finance')default 'programmer'))
+                                                                                                                                                                                                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table emp (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20)check(edept in ('programming','hr','marketing','finance')));
+create table emp (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20)check(edept in ('programming','hr','marketing','finance')))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table emp1 (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20)check(edept in ('programming','hr','marketing','finance')));
+
+Table created.
+
+SQL> desc emp1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                       NOT NULL NUMBER(10)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ EDATE                                              DATE
+ ESAL                                               NUMBER
+ EDESIG                                             VARCHAR2(20)
+ EDEPT                                              VARCHAR2(20)
+
+SQL> create table emp1 (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) default 'soft prog' check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20) default 'programming' check(edept in ('programming','hr','marketing','finance')));
+create table emp1 (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) default 'soft prog' check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20) default 'programming' check(edept in ('programming','hr','marketing','finance')))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table emp2 (eno number(10) primary key,ename varchar2(20) not null,edate date check(edate<='17-aug-2012'),esal number check(esal>=0),edesig varchar2(20) default 'soft prog' check(edesig in ('soft prog','sr prog','accountant','clerk','manager')),edept varchar2(20) default 'programming' check(edept in ('programming','hr','marketing','finance')));
+
+Table created.
+
+SQL> desc emp2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO                                       NOT NULL NUMBER(10)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ EDATE                                              DATE
+ ESAL                                               NUMBER
+ EDESIG                                             VARCHAR2(20)
+ EDEPT                                              VARCHAR2(20)
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: '16-aug-2022'
+Enter value for esal: 1500
+Enter value for edesig: 'soft prog'
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil',''16-aug-2022'',1500,''soft prog'','')
+insert into emp2 values(413,'sahil',''16-aug-2022'',1500,''soft prog'','')
+                                      *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','hr')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','hr')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> alter table emp2(esal number(20));
+alter table emp2(esal number(20))
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table emp2 modify(esal number(20));
+
+Table altered.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');')
+                                                                                                  *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 413
+Enter value for ename: sahil
+Enter value for edate: 16-aug-2022
+Enter value for esal: 1500
+Enter value for edesig: soft prog
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','hr')
+insert into emp2 values(413,'sahil','16-aug-2022',1500,'soft prog','hr')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 14
+Enter value for ename: im
+Enter value for edate: 12-jan-2022
+Enter value for esal: 45666
+Enter value for edesig: hr
+Enter value for edept: dsf
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(14,'im','12-jan-2022',45666,'hr','dsf')
+insert into emp2 values(14,'im','12-jan-2022',45666,'hr','dsf')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008352) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 12
+Enter value for ename: nayan
+Enter value for edate: 12-jan-2002
+Enter value for esal: 45666
+Enter value for edesig: sr prog
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(12,'nayan','12-jan-2002',45666,'sr prog','hr')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 78
+Enter value for ename: sahil
+Enter value for edate: 45-jun-2003
+Enter value for esal: 15000
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(78,'sahil','45-jun-2003',15000,'soft prog','')
+insert into emp2 values(78,'sahil','45-jun-2003',15000,'soft prog','')
+                                   *
+ERROR at line 1:
+ORA-01847: day of month must be between 1 and last day of month
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 45
+Enter value for ename: sahil
+Enter value for edate: 15-jun-2003
+Enter value for esal: 15000
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(45,'sahil','15-jun-2003',15000,'soft prog','')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 48
+Enter value for ename: dipak
+Enter value for edate: 15-jun-2003
+Enter value for esal: 154425
+Enter value for edesig: soft prog
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(48,'dipak','15-jun-2003',154425,'soft prog','')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 72
+Enter value for ename: nano
+Enter value for edate: 12-jul-2003
+Enter value for esal: 46852
+Enter value for edesig: accountant
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(72,'nano','12-jul-2003',46852,'accountant','')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 35
+Enter value for ename: sujal
+Enter value for edate: 28-sep-2004
+Enter value for esal: 78954
+Enter value for edesig: accountant
+Enter value for edept:
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(35,'sujal','28-sep-2004',78954,'accountant','')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 46
+Enter value for ename: suraj
+Enter value for edate: 13-feb-2005
+Enter value for esal: 65442
+Enter value for edesig: manager
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(46,'suraj','13-feb-2005',65442,'manager','hr')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 23
+Enter value for ename: pravin
+Enter value for edate: 09-sep-2006
+Enter value for esal: 85525
+Enter value for edesig:
+Enter value for edept: marketing
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(23,'pravin','09-sep-2006',85525,'','marketing')
+
+1 row created.
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 99
+Enter value for ename: arpita
+Enter value for edate: 08-jun-2021
+Enter value for esal: 45642
+Enter value for edesig:
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(99,'arpita','08-jun-2021',45642,'','hr')
+insert into emp2 values(99,'arpita','08-jun-2021',45642,'','hr')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008349) violated
+
+
+SQL> insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept');
+Enter value for eno: 99
+Enter value for ename: arpita
+Enter value for edate: 08-jan-2003
+Enter value for esal: 45888
+Enter value for edesig:
+Enter value for edept: hr
+old   1: insert into emp2 values(&eno,'&ename','&edate',&esal,'&edesig','&edept')
+new   1: insert into emp2 values(99,'arpita','08-jan-2003',45888,'','hr')
+
+1 row created.
+
+SQL> select*form emp2;
+select*form emp2
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select * form emp2;
+select * form emp2
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select * form emp2
+  2
+SQL> select* from emp;
+
+no rows selected
+
+SQL> select * from emp2
+  2  ;
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT
+--------------------
+        12 nayan                12-JAN-02      45666 sr prog
+hr
+
+        45 sahil                15-JUN-03      15000 soft prog
+
+
+        48 dipak                15-JUN-03     154425 soft prog
+
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT
+--------------------
+        72 nano                 12-JUL-03      46852 accountant
+
+
+        35 sujal                28-SEP-04      78954 accountant
+
+
+        46 suraj                13-FEB-05      65442 manager
+hr
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT
+--------------------
+        23 pravin               09-SEP-06      85525
+marketing
+
+        99 arpita               08-JAN-03      45888
+hr
+
+
+8 rows selected.
+
+SQL> update emp2 set edesig='manager' where eno=45;
+
+1 row updated.
+
+SQL> update set ename='rakesh' whare eno=72;
+update set ename='rakesh' whare eno=72
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> update emp2 set ename='rakesh' whare eno=72;
+update emp2 set ename='rakesh' whare eno=72
+                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> update emp2 set ename='rakesh' whare eno=72;
+update emp2 set ename='rakesh' whare eno=72
+                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> update emp2 set ename='rakesh' where eno=72;
+
+1 row updated.
+
+SQL> alter table emp2 add bonus number(8,2);
+
+Table altered.
+
+SQL> select * from emp2
+  2  ;
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        12 nayan                12-JAN-02      45666 sr prog
+hr
+
+        45 sahil                15-JUN-03      15000 manager
+
+
+        48 dipak                15-JUN-03     154425 soft prog
+
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        72 rakesh               12-JUL-03      46852 accountant
+
+
+        35 sujal                28-SEP-04      78954 accountant
+
+
+        46 suraj                13-FEB-05      65442 manager
+hr
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        23 pravin               09-SEP-06      85525
+marketing
+
+        99 arpita               08-JAN-03      45888
+hr
+
+
+8 rows selected.
+
+SQL> update emp2 set bonus=esal*0.01;
+
+8 rows updated.
+
+SQL> select * from emp2;
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        12 nayan                12-JAN-02      45666 sr prog
+hr                       456.66
+
+        45 sahil                15-JUN-03      15000 manager
+                            150
+
+        48 dipak                15-JUN-03     154425 soft prog
+                        1544.25
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        72 rakesh               12-JUL-03      46852 accountant
+                         468.52
+
+        35 sujal                28-SEP-04      78954 accountant
+                         789.54
+
+        46 suraj                13-FEB-05      65442 manager
+hr                       654.42
+
+
+       ENO ENAME                EDATE           ESAL EDESIG
+---------- -------------------- --------- ---------- --------------------
+EDEPT                     BONUS
+-------------------- ----------
+        23 pravin               09-SEP-06      85525
+marketing                855.25
+
+        99 arpita               08-JAN-03      45888
+hr                       458.88
+
+
+8 rows selected.
