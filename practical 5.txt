@@ -1,0 +1,208 @@
+
+SQL> select ltrim('khalsa college', 'kha')from dual;
+
+LTRIM('KHAL
+-----------
+lsa college
+
+
+SQL> select instr('Guru Nanak Khalsa college','u',3,1) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','U',3,1)
+---------------------------------------
+                                      4
+
+SQL> select instr('Guru Nanak Khalsa college','u',1,1) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','U',1,1)
+---------------------------------------
+                                      2
+
+
+SQL> select instr('Guru Nanak Khalsa college','a',5,3) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','A',5,3)
+---------------------------------------
+                                     14
+
+SQL> select instr('Guru Nanak Khalsa college','a',-5,3) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','A',-5,3)
+----------------------------------------
+                                       9
+
+SQL> select instr('Guru Nanak Khalsa college','a',3) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','A',3)
+-------------------------------------
+                                    7
+
+
+SQL> select instr('Guru Nanak Khalsa college','a',1) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','A',1)
+-------------------------------------
+                                    7
+
+                                   7
+
+SQL> select instr('Guru Nanak Khalsa college','a',10) from dual;
+
+INSTR('GURUNANAKKHALSACOLLEGE','A',10)
+--------------------------------------
+                                    14
+                              14
+
+SQL> select substr('string',2,4)from dual;
+
+SUBS
+----
+trin
+
+
+
+SQL> select substr('string',2)from dual;
+
+SUBST
+-----
+tring
+
+SQL> select length('abcde')from dual;
+
+LENGTH('ABCDE')
+---------------
+              5
+          5
+
+SQL> select length(' abcde ')from dual;
+
+LENGTH('ABCDE')
+---------------
+              7
+
+SQL> select length( 'abcde' )from dual;
+
+LENGTH('ABCDE')
+---------------
+              5
+SQL> select reverse('abcde')from dual;
+
+REVER
+-----
+edcba
+
+
+
+SQL> select add_months('04-nov-2020',5)from dual;
+
+ADD_MONTH
+---------
+04-APR-21
+
+
+SQL> select add_months(edate,5)from emp2;
+
+ADD_MONTH
+---------
+12-JUN-02
+15-NOV-03
+15-NOV-03
+12-DEC-03
+28-FEB-05
+13-JUL-05
+09-FEB-07
+08-JUN-03
+
+8 rows selected.
+
+
+SQL> select current_date from dual;
+
+CURRENT_D
+---------
+07-SEP-22
+
+
+SQL> select add_months(current_date,5)from dual;
+
+ADD_MONTH
+---------
+07-FEB-23
+
+
+
+SQL> select last_day(current_date)from dual;
+
+LAST_DAY(
+---------
+30-SEP-22
+
+
+
+SQL> select last_day(edate)from emp2;
+
+LAST_DAY(
+---------
+31-JAN-02
+30-JUN-03
+30-JUN-03
+31-JUL-03
+30-SEP-04
+28-FEB-05
+30-SEP-06
+31-JAN-03
+
+8 rows selected.
+
+SQL> select months_between('20-jan-2010','30-jul-2008')from dual;
+
+MONTHS_BETWEEN('20-JAN-2010','30-JUL-2008')
+-------------------------------------------
+                                 17.6774194
+
+
+
+SQL> select months_between('20-jan-2010','30-jul-2018')from dual;
+
+MONTHS_BETWEEN('20-JAN-2010','30-JUL-2018')
+-------------------------------------------
+                                 -102.32258
+
+
+
+SQL> select months_between(current_date,edate)from emp2;
+
+MONTHS_BETWEEN(CURRENT_DATE,EDATE)
+----------------------------------
+                        247.850698
+                        230.753924
+                        230.753924
+                        229.850698
+                        215.334569
+                         210.81844
+                        191.947472
+                         235.97973
+
+8 rows selected.
+
+
+SQL> select next_day(edate,'Sunday')from emp2;
+
+NEXT_DAY(
+---------
+13-JAN-02
+22-JUN-03
+22-JUN-03
+13-JUL-03
+03-OCT-04
+20-FEB-05
+10-SEP-06
+12-JAN-03
+
+8 rows selected.
+
+SQL> select next_day(current_date,'Sunday')from dual;
+
+NEXT_DAY(
+---------
+11-SEP-22

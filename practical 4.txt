@@ -1,16 +1,5 @@
+prac 4
 
-SQL*Plus: Release 21.0.0.0.0 - Production on Wed Sep 7 07:35:29 2022
-Version 21.3.0.0.0
-
-Copyright (c) 1982, 2021, Oracle.  All rights reserved.
-
-Enter user-name: system
-Enter password:
-Last Successful login time: Wed Sep 07 2022 07:27:09 +05:30
-
-Connected to:
-Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
-Version 21.3.0.0.0
 
 SQL> select * from emp2;
 
